@@ -5,7 +5,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 
 import HomeScreen from './screens/HomeScreen';
-import Productscreen from './components/productscreen';
+import ProductScreen from './screens/productscreen';
 
 import { Container } from 'react-bootstrap';
 
@@ -20,7 +20,7 @@ function App() {
           {/* <HomeScreen /> */}
           <Routes>
            <Route exact path='/home' element={<HomeScreen/>} />
-           <Route path='/product/:id' element={<Productscreen/>} />
+           <Route path='/product/:id' element={<ProductScreen/>} />
           </Routes>
         </Container>
       </main>
