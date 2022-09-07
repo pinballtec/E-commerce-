@@ -19,7 +19,7 @@ function App() {
         <Container>
           {/* <HomeScreen /> */}
           <Routes>
-           <Route exact path='/home' element={<HomeScreen/>} />
+           <Route exact path='/' element={<HomeScreen/>} />
            <Route path='/product/:id' element={<ProductScreen/>} />
           </Routes>
         </Container>

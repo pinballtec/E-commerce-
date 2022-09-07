@@ -1,10 +1,24 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import {Row, Col} from 'react-bootstrap'
 import products from '../products'
 import Product from '../components/Product'
+import axios from 'axios'
 
 
 function HomeScreen() {
+  const [products, setProducts] = useState([])
+
+useEffect(()=>{
+  // console.log('Use effect triggered');  
+  async function fetchProducts(){
+    const {data} = await axios.get('http://127.0.0.1:8000/api/products/')
+    setProducts(data)
+  }
+
+  fetchProducts()
+
+},[])
+
   return (
     <div>
         <h1>Latets Products</h1>
@@ -20,4 +34,4 @@ function HomeScreen() {
   )
 }
 
-export default HomeScreen
+export default HomeScreen 

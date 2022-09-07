@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
@@ -7,10 +7,23 @@ import {Row, Col, Image, ListGroup, Button, Card, ListGroupItem} from 'react-boo
 import Rating from '../components/Rating';
 import products from '../products'; 
 import { withRouter } from "react-router";
+import axios from 'axios';
 
 function ProductScreen() {
   const { id } = useParams();
+  const setProduct = useState([])
   const product = products.find((p) => p._id === id)
+
+useEffect(()=>{
+  // console.log('Use effect triggered');  
+  async function fetchProduct(){
+    const {data} = await axios.get(`http://127.0.0.1:8000/api/products/${product.id}`)
+    setProduct(data)
+  }
+
+  fetchProduct()
+
+},[])
   return (
     <div>
       <div>
@@ -80,7 +93,7 @@ function ProductScreen() {
           </Col>
         </Row>
       </div>
-        <Link to='/home' className='btn btn-light my-3'>Go Back</Link>
+        <Link to='/' className='btn btn-light my-3'>Go Back</Link>
     </div>
   )
 }
