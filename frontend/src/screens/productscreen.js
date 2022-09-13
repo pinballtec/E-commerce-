@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 
 import {Row, Col, Image, ListGroup, Button, Card, ListGroupItem} from 'react-bootstrap';
 
@@ -9,21 +9,23 @@ import products from '../products';
 import { withRouter } from "react-router";
 import axios from 'axios';
 
-function ProductScreen() {
-  const { id } = useParams();
-  const setProduct = useState([])
-  const product = products.find((p) => p._id === id)
+function ProductScreen({ match }) {
+  // const { id } = useParams();
+  const [product, setProduct] = useState([])
+  // const product = products.find((p) => p._id === id)
 
-useEffect(()=>{
-  // console.log('Use effect triggered');  
-  async function fetchProduct(){
-    const {data} = await axios.get(`http://127.0.0.1:8000/api/products/${product.id}`)
-    setProduct(data)
-  }
+  useEffect(()=>{
+    // console.log('Use effect triggered');  
+    async function fetchProduct() {
 
-  fetchProduct()
+      const {data} = await axios.get(`http://127.0.0.1:8000/api/products/${match.params.id}`)
+      setProduct(data)
+      
+    }
 
-},[])
+    fetchProduct()
+
+  },[])
   return (
     <div>
       <div>
@@ -83,7 +85,7 @@ useEffect(()=>{
                 </ListGroup.Item>
 
                 <ListGroup.Item className='d-flex justify-content-center'>
-                  <Button className='btn btn-default' type='button' disabled={product.countInStock == 0}>
+                  <Button className='btn btn-default' type='button' disabled={product.countInStock === 0}>
                     Add to Card
                   </Button>
                 </ListGroup.Item>
