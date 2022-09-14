@@ -1,6 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import  thunk  from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
+import {productListReducers} from './reducers/productReducers'
 
 const CountReducer = (state = 0, action) => {
     switch (action.type) {
@@ -12,7 +13,8 @@ const CountReducer = (state = 0, action) => {
   };
 
 const rootReducer = combineReducers({
-    count: CountReducer
+    count: CountReducer,
+    productList: productListReducers,
 })
 
 const initialState = {}
