@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom";
 import { Row, Col, Image, ListGroup, Button, Card } from "react-bootstrap";
 
 import Rating from "../components/Rating";
-import axios from "axios";
 
 function ProductScreen({ match }) {
   const [product, setProduct] = useState([]);
