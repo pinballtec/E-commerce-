@@ -1,7 +1,6 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
-from ..models import Product, Review, Order, OrderItem, ShippingAddress
-from django.contrib.auth import get_user_model
+from ..models import Product, Review, Order, OrderItem
 
 
 class ProductModelTest(TestCase):
@@ -162,5 +161,3 @@ class OrderItemModelTestCase(TestCase):
         Test that the string representation of an OrderItem object is correct.
         """
         self.assertEqual(str(self.order_item), 'Test Product')
-
-

@@ -30,3 +30,4 @@ Thumbs.db
 .vscode/
 *.log
 *.swp
+backend/base_app/migrations
