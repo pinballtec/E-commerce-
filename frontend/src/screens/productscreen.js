@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-// import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 
 import { Row, Col, Image, ListGroup, Button, Card } from "react-bootstrap";
 
@@ -8,20 +8,26 @@ import Rating from "../components/Rating";
 import axios from "axios";
 
 function ProductScreen({ match }) {
-  // const { id } = useParams();
   const [product, setProduct] = useState([]);
-  // const product = products.find((p) => p._id === id)
+  const { id } = useParams();
 
   useEffect(() => {
     async function fetchProduct() {
-      const { data } = await axios.get(
-        `http://127.0.0.1:8000/api/products/${match.params.id}`
-      );
-      setProduct(data);
+      try {
+        const response = await fetch(`/api/products/${id}`);
+        const data = await response.json();
+        setProduct(data);
+      } catch (error) {
+        console.error(error);
+      }
     }
 
     fetchProduct();
-  }, [match.params.id]);
+  }, [id]);
+
+  if (!product) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>
@@ -46,11 +52,6 @@ function ProductScreen({ match }) {
                   color="#7FFF00"
                 />
               </ListGroup.Item>
-
-              {/* <ListGroup.Item>
-                Price: ${product.price}
-              </ListGroup.Item> */}
-
               <ListGroup.Item>{product.description}</ListGroup.Item>
             </ListGroup>
           </Col>

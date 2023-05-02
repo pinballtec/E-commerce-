@@ -6,7 +6,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -27,7 +26,8 @@ class Migration(migrations.Migration):
                 ('countInStock', models.IntegerField(blank=True, default=0, null=True)),
                 ('createdAt', models.DateField(auto_now_add=True)),
                 ('_id', models.AutoField(editable=False, primary_key=True, serialize=False)),
-                ('user', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to=settings.AUTH_USER_MODEL)),
+                ('user', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL,
+                                           to=settings.AUTH_USER_MODEL)),
             ],
         ),
     ]

@@ -16,7 +16,6 @@ function App() {
       <Header />
       <main className="py-5">
         <Container>
-          {/* <HomeScreen /> */}
           <Routes>
             <Route
               exact
@@ -24,7 +23,7 @@ function App() {
               element={<HomeScreen />}
             />
             <Route
-              path="/product/:id"
+              path="/products/:id"
               element={<ProductScreen />}
             />
           </Routes>

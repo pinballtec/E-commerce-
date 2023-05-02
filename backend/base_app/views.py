@@ -10,8 +10,9 @@ from .serializers import ProductSerializer
 @api_view(['GET'])
 def routers(request):
     routes = [
-        '/api/ - routes',
-        '/api/products/ - product page',
+        "/api/ - routes",
+        "/api/products/ - product page",
+        "/api/products/<str:pk>/, - single product page",
     ]
     return Response(routes)
 
