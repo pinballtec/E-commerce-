@@ -27,3 +27,8 @@ jobs:
       run: |
         cd backend/
         python /home/runner/work/E-commerce-/E-commerce-/backend/manage.py test
+    - name: Flake8 Check
+    run: |
+      pip install flake8
+      flake8 backend/ --config setup.cfg
+
