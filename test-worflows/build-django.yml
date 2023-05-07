@@ -1,0 +1,36 @@
+name: Build Django
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python-version: [3.10.6, 3.11, 3.9]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r backend/requirements.txt
+      - name: Collect Static Files
+        run: |
+          cd backend/
+          python manage.py collectstatic --noinput
+      - name: Build Distribution Package
+        run: |
+          cd backend/
+          python setup.py sdist bdist_wheel
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          path: ./backend/dist/
+          name: distribution-package
