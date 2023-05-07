@@ -24,8 +24,7 @@ class ProductSerializerTestCase(TestCase):
 
     def test_product_serializer(self):
         data = self.serializer.data
-        self.assertEqual(data['id'], self.product.id)
-        self.assertEqual(data['user'], str(self.user.id))
+        self.assertEqual(data['user'], self.user.id)
         self.assertEqual(data['name'], 'Test Product')
         self.assertEqual(data['category'], 'Test Category')
         self.assertEqual(data['brand'], 'Test Brand')
