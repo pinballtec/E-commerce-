@@ -1,0 +1,20 @@
+name: Build
+on: [push, pull_request, workflow_dispatch]
+jobs:
+  build:
+    - name: Get Code
+      uses: actions/checkout@v3
+    - name: Install Dependencies
+      working-directory: ./frontend
+      run: |
+        npm install
+    - name: Build project
+      working-directory: ./frontend
+      run: |
+        npm run build
+    - name: Upload Artifact
+      working-directory: ./frontend
+      uses: actions/upload-artifact@v3
+      with:
+        path: ./frontend/build
+        name: build-files

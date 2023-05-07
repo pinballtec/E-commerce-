@@ -62,7 +62,7 @@ jobs:
         working-directory: ./frontend
         run: |
           npm install
-      - name: Run Tests
+      - name: Run Build
         working-directory: ./frontend
         run: |
           npm run build
